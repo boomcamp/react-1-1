@@ -49,10 +49,14 @@ export default class App extends Component {
         })
     }
     checkout(){
-        this.setState({
-            cart: [],
-        })
-        alert('Purchase is complete!');
+        if(this.state.address != '' || this.state.creditCard != ''){ 
+            this.setState({
+                cart: [],
+            })
+            alert('Purchase is complete!');
+        }else{
+            alert('Please Insert required fields!');
+        }
     }
     handleAddressInput(e){
         this.setState({
@@ -142,8 +146,12 @@ export default class App extends Component {
                     )}
                     </h2>
                     <div className="App">
-                        <input type="text" onChange={this.handleAddressInput} value={this.state.address}/>
-                        <input type="text" onChange={this.handleCreditCardInput} value={this.state.creditCard}/>
+                        <div className="column">
+                            <input type="text" placeholder="address" onChange={this.handleAddressInput} value={this.state.address}/>
+                        </div>
+                        <div className="column">
+                            <input type="text" placeholder="credit card number" onChange={this.handleCreditCardInput} value={this.state.creditCard}/>
+                        </div>
                     </div>
                     <button onClick={this.checkout}> Checkout </button>
 
