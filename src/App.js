@@ -143,7 +143,6 @@ export default class App extends Component {
                           } else {
                             alert('Please fill out the required fields.');
                           }
-                        
                         }}>Checkout</button>
                     {this.state.cart.map(item => (
                           <div key={item.id} className='product'  style={{display: this.state.toggleView ? 'flex' : 'block' }}>
