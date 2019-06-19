@@ -20,7 +20,7 @@ export default class App extends Component {
                 description: 'With free 1 gallon of gas',
             },
             {
-                id: 1,
+                id: 3,
                 imageUrl: 'https://via.placeholder.com/150x150',
                 title: 'Wife',
                 price: 10,
@@ -28,6 +28,12 @@ export default class App extends Component {
             }],
             cart: [],
         };
+    }
+
+    addToCart(product){
+        this.setState({
+            cart: [...this.state.cart, product]
+        })
     }
 
     render(){
@@ -40,11 +46,11 @@ export default class App extends Component {
                     this.state.products
                         .map(p =>( 
                             <div key={p.id} className="product">
-                                <img src={p.imageUrl} alt="product image" />
+                                <img src={p.imageUrl} alt="product" />
                                 <h4>{p.title}</h4>
                                 <p>{p.description}</p>
                                 <p>{p.price}</p>
-                                <button>Add To Cart</button>
+                                <button onClick={() => this.addToCart(p)}>Add To Cart</button>
                             </div>
                         ))
                 }
