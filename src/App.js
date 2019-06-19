@@ -13,7 +13,7 @@ export default class App extends Component {
             title: 'asdfsdafasd',
             price: 12.99,
             description: 'dipisicing elit. Quasi libero nemo dolorem soluta laborum, sequi natus quisquam consequuntur, iusto repellendus ab ',
-            quantity: 1 ,
+            quantity: 0 ,
 
           },
           {
@@ -22,7 +22,7 @@ export default class App extends Component {
             title: 'asdfsdfasdfsadfsa',
             price: 12.99,
             description: 'has a feather in it.',
-            quantity: 1 ,
+            quantity: 0 ,
             
           },
           {
@@ -31,7 +31,7 @@ export default class App extends Component {
             title: 'asd',
             price: 12.99,
             description: 'has a feather in it.',
-            quantity: 1 ,
+            quantity: 0 ,
             
           },
          
@@ -47,7 +47,7 @@ export default class App extends Component {
               'Headgear commonly used by fishermen. Increases fishing skill marginally.',
             price: 12.99,
             imageUrl: 'https://via.placeholder.com/150x150',
-            quantity: 1 ,
+            quantity: 0 ,
             
           },
           {
@@ -56,7 +56,7 @@ export default class App extends Component {
             description: 'Uncomfortable, but sturdy.',
             price: 8.99,
             imageUrl: 'https://via.placeholder.com/150x150',
-            quantity: 1 ,
+            quantity: 0 ,
             
           },
         ],
@@ -64,32 +64,39 @@ export default class App extends Component {
         cart: [],
         address: '',
         creditCard: '',
+        cardView: false,
       };
     }
 
    
-
     addToCart(item) {
-      let checkCart = new Set( this.state.cart);
-
-      
-      if(checkCart.has(item)){
-        let newItem = item;
-        newItem.quantity += 1;
-        console.log(newItem);
-      
+      let cartCopy = this.state.cart.map(product => Object.assign({}, product));
+      let index = this.state.cart.findIndex(product => product.id === item.id);
+  
+      if (index === -1) {
+        item = Object.assign({}, item, { quantity: 1 });
+        this.setState({ cart: [...this.state.cart, item] });
+      } else {
+        cartCopy[index].quantity++;
+        this.setState({ cart: cartCopy });
       }
-      else{
-        this.setState({
-          cart: [...this.state.cart, item],
-        
-        });
-      }
-
-      
-
     }
+
+    deleteFromCart(id) {
+      let cartCopy = this.state.cart.map(product => Object.assign({}, product));
+      let index = this.state.cart.findIndex(product => product.id === id);
+  
+      if (cartCopy[index].quantity === 1) {
+        cartCopy.splice(index, 1);
+      } else if (cartCopy[index].quantity > 1) {
+        cartCopy[index].quantity--;
+      }
+  
+      this.setState({ cart: cartCopy });
+    }
+  
     
+
     checkout = () => {
       if (this.state.address.length > 0 && this.state.creditCard.length > 0) {
         this.setState({ cart: [] });
@@ -108,21 +115,26 @@ export default class App extends Component {
       this.setState({ creditCard: e.target.value });
     }
    
-
+    handleToggle = () =>{
+      this.setState({ cardView: !this.state.cardView });
+      console.log(this.state.cardView);
+    }
     render(){
       
+      
+
       return (
         <div className="App">
           
-          <section className="products">
+          <section className="products" >
             <h4 className="section-title no-margin">Products</h4>
             <br/>
-            <button>Toggle View</button>
+            <button onClick={this.handleToggle}>Toggle View</button>
       
             <h4 className="section-title">T-shirts</h4>
             {
               this.state.shirt.map( element => (
-                <div key={element.id} className="product">
+                <div key={element.id} className={this.state.cardView ? "product" : " product flexed"}>
                   <img src={element.imageUrl} />
                   <div className="product-description">
                     <h4>{element.title}</h4>
@@ -188,7 +200,9 @@ export default class App extends Component {
                     <p>{element.description}</p>
                     <br/>
                     <p>$ {element.price} | <b>Quantity</b> : {element.quantity}</p>
-                   
+                    <button onClick={() => this.deleteFromCart(element.id)}>
+                      Remove from Cart
+                    </button>
                     {/* <button onClick={() => this.addToCart(element)}>Add to Cart</button> */}
                   </div>
                 </div>

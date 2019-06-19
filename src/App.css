@@ -23,9 +23,12 @@
   .product{
     
     margin:15px;
-    display: flex;
     color:#666;  
     border:solid 1px #CCC;
+  }
+  .flexed{
+    
+    display: flex;
   }
   .product *{
     margin:5px;
