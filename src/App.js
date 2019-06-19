@@ -50,7 +50,9 @@ class App extends Component{
                     price: 6.90,
                     description: 'Same name with title....'
                 }
-            ]
+            ],
+            address: "",
+            creditCard: ""
         };
     }
 
@@ -65,6 +67,14 @@ class App extends Component{
     checkout = () => {
         this.setState({ cart: [] });
         alert('Purchase is complete!');
+    };
+
+    handleAddressInput = e => {
+        this.setState({ address: e.target.value });
+    };
+      
+    handleCreditCardInput = e => {
+        this.setState({ creditCard: e.target.value });
     };
 
     render(){
@@ -114,6 +124,18 @@ class App extends Component{
                         )
                     }
                     </h2>
+                    <div className="inputs">
+                        <input
+                        placeholder="address"
+                        value={this.state.address}
+                        onChange={this.handleAddressInput}
+                        />
+                        <input
+                        placeholder="credit card number"
+                        value={this.state.creditCard}
+                        onChange={this.handleCreditCardInput}
+                        />
+                    </div>
                     <button onClick={this.checkout}>Checkout</button>
                     {
                         this.state.cart.map(
