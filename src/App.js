@@ -67,6 +67,18 @@ class App extends Component{
                 </section>
                 <section className="cart">
                     <h1>Cart</h1>
+                    {
+                        this.state.cart.map(
+                            item => (
+                                <div key={item.id} className="product">
+                                    <img src={item.imageUrl} />
+                                    <h4>{item.title}</h4>
+                                    <p>{item.description}</p>
+                                    <p>{item.price}</p>
+                                </div>
+                            )
+                        )
+                    }
                 </section>
             </div>
         )
