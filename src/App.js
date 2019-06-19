@@ -4,6 +4,8 @@ export default class App extends Component {
     constructor(){
         super();
         this.state = {
+            address: '',
+            creditCard: '',
             cart: [],
             houses: 
             [
@@ -37,6 +39,8 @@ export default class App extends Component {
             ],
         };
         this.checkout = this.checkout.bind(this);
+        this.handleAddressInput = this.handleAddressInput.bind(this);
+        this.handleCreditCardInput = this.handleCreditCardInput.bind(this);
     }
 
     addToCart(product){
@@ -49,6 +53,16 @@ export default class App extends Component {
             cart: [],
         })
         alert('Purchase is complete!');
+    }
+    handleAddressInput(e){
+        this.setState({
+            address: e.target.value,
+        })
+    }
+    handleCreditCardInput(e){
+        this.setState({
+            creditCard: e.target.value,
+        })
     }
 
     render(){
@@ -127,7 +141,12 @@ export default class App extends Component {
                         (totalPrice, product) => (totalPrice += product.price),0
                     )}
                     </h2>
+                    <div className="App">
+                        <input type="text" onChange={this.handleAddressInput} value={this.state.address}/>
+                        <input type="text" onChange={this.handleCreditCardInput} value={this.state.creditCard}/>
+                    </div>
                     <button onClick={this.checkout}> Checkout </button>
+
                     {
                     this.state.cart
                         .map(cartItem =>( 
