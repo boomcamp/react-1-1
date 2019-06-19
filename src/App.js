@@ -50,15 +50,62 @@ export default class App extends Component {
             <div className="column">
               <section className="products">
                 <h1>Products</h1>
+                <h2>Houses</h2>
                 {
-                    this.state.products
+                    this.state.houses
                         .map(p =>( 
                             <div key={p.id} className="product">
-                                <img src={p.imageUrl} alt="product" />
-                                <h4>{p.title}</h4>
-                                <p>{p.description}</p>
-                                <p>{p.price}</p>
-                                <button onClick={() => this.addToCart(p)}>Add To Cart</button>
+                                <div className="App">
+                                    <div className="column">
+                                        <img src={p.imageUrl} alt="product" />
+                                    </div>
+                                    <div className="column">
+                                        <h4>{p.title}</h4>
+                                        <p>{p.description}</p>
+                                        <p>{p.price}</p>
+                                        <button onClick={() => this.addToCart(p)}>Add To Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                }
+
+                <h2>Cars</h2>
+                {
+                    this.state.cars
+                        .map(p =>( 
+                            <div key={p.id} className="product">
+                                <div className="App">
+                                    <div className="column">
+                                        <img src={p.imageUrl} alt="product" />
+                                    </div>
+                                    <div className="column">
+                                        <h4>{p.title}</h4>
+                                        <p>{p.description}</p>
+                                        <p>{p.price}</p>
+                                        <button onClick={() => this.addToCart(p)}>Add To Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                }
+
+                <h2>Humans</h2>
+                {
+                    this.state.humans
+                        .map(p =>( 
+                            <div key={p.id} className="product">
+                                <div className="App">
+                                    <div className="column">
+                                        <img src={p.imageUrl} alt="product" />
+                                    </div>
+                                    <div className="column">
+                                        <h4>{p.title}</h4>
+                                        <p>{p.description}</p>
+                                        <p>{p.price}</p>
+                                        <button onClick={() => this.addToCart(p)}>Add To Cart</button>
+                                    </div>
+                                </div>
                             </div>
                         ))
                 }
@@ -72,11 +119,17 @@ export default class App extends Component {
                     this.state.cart
                         .map(cartItem =>( 
                             <div key={cartItem.id} className="product">
-                                <img src={cartItem.imageUrl} alt="product" />
-                                <h4>{cartItem.title}</h4>
-                                <p>{cartItem.description}</p>
-                                <p>{cartItem.price}</p>
-                                <button onClick={() => this.addToCart(cartItem)}>Add To Cart</button>
+                                <div className="App">
+                                    <div className="column">
+                                        <img src={cartItem.imageUrl} alt="product" />
+                                    </div>
+                                    <div className="column">
+                                        <h4>{cartItem.title}</h4>
+                                        <p>{cartItem.description}</p>
+                                        <p>{cartItem.price}</p>
+                                        <button onClick={() => this.addToCart(cartItem)}>Add To Cart</button>
+                                    </div>
+                                </div>
                             </div>
                         ))
                 }
