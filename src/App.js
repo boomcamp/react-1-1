@@ -4,6 +4,7 @@ export default class App extends Component {
     constructor(){
         super();
         this.state = {
+            cardView: true,
             address: '',
             creditCard: '',
             cart: [],
@@ -44,6 +45,7 @@ export default class App extends Component {
         this.checkout = this.checkout.bind(this);
         this.handleAddressInput = this.handleAddressInput.bind(this);
         this.handleCreditCardInput = this.handleCreditCardInput.bind(this);
+        this.handleToggleView = this.handleToggleView.bind(this);
     }
 
     addToCart(product){
@@ -85,7 +87,7 @@ export default class App extends Component {
         let copyCart = [...this.state.cart];
         let index = this.state.cart.findIndex(p => p.id === id);
 
-        if(copyCart[index].quantity===0){
+        if(copyCart[index].quantity===1){
             copyCart = copyCart.filter(c => c.id !== copyCart[index].id);
         }else{
             copyCart[index].quantity-=1;
@@ -96,11 +98,25 @@ export default class App extends Component {
         })
     }
 
+    handleToggleView(){
+        if(this.state.cardView){
+            this.setState({
+                cardView:false
+            })
+        }
+        else{
+            this.setState({
+                cardView:true
+            })
+        }
+    }
+
     render(){
         return(
             <div className="App">
             <div className="column">
               <section className="products">
+                <button onClick={this.handleToggleView}> Toggle View </button>
                 <h1>Products</h1>
                 <h2>Houses</h2>
                 {
