@@ -1,0 +1,45 @@
+* {
+	box-shadow: border-box;
+}
+
+.App {
+	display: flex;
+	width: 100%;
+	height: 100%;
+}
+
+.products {
+	background-color: grey;
+	padding: 5px 5px 5px 5px;
+	width: 50%;
+}
+
+.cart {
+	background-color: black;
+	color: white;
+	width: 50%;
+}
+
+h1, h2 {
+	border-left: black;
+	border-left-width: 20px;
+}
+
+.cart button {
+	height: 20px;
+	width: 60px;
+	margin: 10px 0;
+}
+
+
+.product {
+	display: flex;
+}
+
+.product:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.inputs input:not(:last-child) {
+  margin-right: 10px;
+}
