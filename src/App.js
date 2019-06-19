@@ -47,7 +47,7 @@ export default class App extends Component {
     }
 
     addToCart(product){
-        let copyCart = this.state.cart.map(p => Object.assign({}, p));
+        let copyCart = [...this.state.cart];
         let index = this.state.cart.findIndex(p => p.id === product.id);
         if(index === -1){ 
             product = Object.assign({},product,{ quantity: 1 });
