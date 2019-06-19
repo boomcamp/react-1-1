@@ -33,6 +33,11 @@ body{
 
 .cart .product{
     border: 1px solid white;
-    margin-bottom: 1%;
+    margin-top: 1%;
     width: 75%;
+}
+
+input{
+    margin-right: 1%;
+    margin-bottom: 1%;
 }
