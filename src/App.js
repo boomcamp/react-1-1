@@ -156,7 +156,7 @@ export default class App extends Component {
                     <h1>Cart</h1>
                     <h2>Total $
                     {this.state.cart.reduce(
-                        (totalPrice, product) => (totalPrice += product.price),0
+                        (totalPrice, product) => (totalPrice += product.price * product.quantity),0
                     )}
                     </h2>
                     <div className="App">
