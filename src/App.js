@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './App.css';
 
 export default class App extends Component {
     constructor() {
@@ -62,14 +63,14 @@ export default class App extends Component {
                         
                         <div key={item.id} className="products">
                             <div className="content">
-                                <div className="picture">
+                                <div className="product-photo">
                                     <img src={item.imageUrl} height="180" width="200" />
                                 </div>
                                 <div className="details">
                                     <h4>{item.title}</h4>
                                     <p>{item.price}</p>
                                     <p>{item.description}</p>
-                                    <button onClick={() => this.addToCart(item)}>Add to Cart</button>
+                                    <button className="button" onClick={() => this.addToCart(item)}>Add to Cart</button>
                                 </div>
                             </div>
                         </div>
@@ -78,6 +79,20 @@ export default class App extends Component {
                 
                 <section className="cart">
                     <h1>Cart</h1>
+                    {this.state.cart.map(item =>(
+                        <div key={item.id} className="cart-item">
+                            <div className="content">
+                                <div className="product-photo">
+                                    <img src={item.imageUrl} height="150" width="180" />
+                                </div>
+                                <div className="details">
+                                    <h4>{item.title}</h4>
+                                    <p>{item.price}</p>
+                                    <p>{item.description}</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </section>
             </div>
         );
