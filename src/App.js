@@ -4,7 +4,7 @@ class App extends Component{
     constructor(){
         super();
         this.state = {
-            products: [
+            coins: [
                 {
                     id: 1,
                     imageUrl: 'https://via.placeholder.com/150x150',
@@ -34,7 +34,23 @@ class App extends Component{
                     description: 'FROM BINANCE'
                 }
             ],
-            cart: []
+            cart: [],
+            others: [
+                {
+                    id: 5,
+                    imageUrl: 'https://via.placeholder.com/150x150',
+                    title: 'LTC - Litecoin',
+                    price: 137.40,
+                    description: 'LITE'
+                },
+                {
+                    id: 6,
+                    imageUrl: 'https://via.placeholder.com/150x150',
+                    title: 'EOS',
+                    price: 6.90,
+                    description: 'Same name with title....'
+                }
+            ]
         };
     }
 
@@ -51,15 +67,34 @@ class App extends Component{
             <div className="App">
                 <section className="products">
                     <h1>Products</h1>
+                    <h2>Coins</h2>
                     {
-                        this.state.products.map(
+                        this.state.coins.map(
                             item => (
                                 <div key={item.id} className="product">
                                     <img src={item.imageUrl} />
-                                    <h4>{item.title}</h4>
-                                    <p>{item.description}</p>
-                                    <p>{item.price}</p>
-                                    <button onClick={() => this.addToCart(item)}>Add to Cart</button>
+                                    <div className="product-info">
+                                        <h4>{item.title}</h4>
+                                        <p>{item.description}</p>
+                                        <p>{item.price}</p>
+                                        <button onClick={() => this.addToCart(item)}>Add to Cart</button>
+                                    </div>
+                                </div>
+                            )
+                        )
+                    }
+                    <h3>Other Coins</h3>
+                    {
+                        this.state.others.map(
+                            item => (
+                                <div key={item.id} className="product">
+                                    <img src={item.imageUrl} />
+                                    <div className="product-info">
+                                        <h4>{item.title}</h4>
+                                        <p>{item.description}</p>
+                                        <p>{item.price}</p>
+                                        <button onClick={() => this.addToCart(item)}>Add to Cart</button>
+                                    </div>
                                 </div>
                             )
                         )
@@ -72,9 +107,11 @@ class App extends Component{
                             item => (
                                 <div key={item.id} className="product">
                                     <img src={item.imageUrl} />
-                                    <h4>{item.title}</h4>
-                                    <p>{item.description}</p>
-                                    <p>{item.price}</p>
+                                    <div className="product-info">
+                                        <h4>{item.title}</h4>
+                                        <p>{item.description}</p>
+                                        <p>{item.price}</p>
+                                    </div>
                                 </div>
                             )
                         )
