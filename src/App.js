@@ -14,6 +14,7 @@ export default class App extends Component {
                     imageUrl: 'https://via.placeholder.com/150x150',
                     title: 'House & Lot',
                     price: 100,
+                    quantity: 0,
                     description: 'With furnitures inside',
                 }
             ],
@@ -24,6 +25,7 @@ export default class App extends Component {
                     imageUrl: 'https://via.placeholder.com/150x150',
                     title: 'Red Car',
                     price: 90,
+                    quantity: 0,
                     description: 'With free 1 gallon of gas',
                 }
             ],
@@ -34,6 +36,7 @@ export default class App extends Component {
                     imageUrl: 'https://via.placeholder.com/150x150',
                     title: 'Wife',
                     price: 10,
+                    quantity: 0,
                     description: 'Have 4 babies',
                 }
             ],
@@ -44,12 +47,22 @@ export default class App extends Component {
     }
 
     addToCart(product){
-        this.setState({
-            cart: [...this.state.cart, product]
-        })
+        let copyCart = this.state.cart.map(p => Object.assign({}, p));
+        let index = this.state.cart.findIndex(p => p.id === product.id);
+        if(index === -1){ 
+            product = Object.assign({},product,{ quantity: 1 });
+                this.setState({
+                    cart: [...this.state.cart, product]
+                })
+        }else{
+            copyCart[index].quantity++;
+            this.setState({
+                cart: copyCart,
+            });
+        }
     }
     checkout(){
-        if(this.state.address != '' || this.state.creditCard != ''){ 
+        if(this.state.address !== '' || this.state.creditCard !== ''){ 
             this.setState({
                 cart: [],
             })
@@ -87,6 +100,7 @@ export default class App extends Component {
                                     <div className="column">
                                         <h4>{p.title}</h4>
                                         <p>{p.description}</p>
+                                        <p>{p.quantity}</p>
                                         <p>{p.price}</p>
                                         <button onClick={() => this.addToCart(p)}>Add To Cart</button>
                                     </div>
@@ -166,6 +180,7 @@ export default class App extends Component {
                                     <div className="column">
                                         <h4>{cartItem.title}</h4>
                                         <p>{cartItem.description}</p>
+                                        <p>{cartItem.quantity}</p>
                                         <p>{cartItem.price}</p>
                                     </div>
                                 </div>
