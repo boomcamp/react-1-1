@@ -112,6 +112,7 @@ export default class App extends Component {
     }
 
     render(){
+        if(this.state.cardView){
         return(
             <div className="App">
             <div className="column">
@@ -224,5 +225,119 @@ export default class App extends Component {
               </div>
             </div>
           )
+        }else{
+            return(
+                <div className="App">
+                <div className="column">
+                  <section className="products">
+                    <button onClick={this.handleToggleView}> Toggle View </button>
+                    <h1>Products</h1>
+                    <h2>Houses</h2>
+                    {
+                        this.state.houses
+                            .map(p =>( 
+                                <div key={p.id} className="product">
+                                    <div className="">
+                                        <div className="column">
+                                            <img src={p.imageUrl} alt="product" />
+                                        </div>
+                                        <div className="column">
+                                            <h4>{p.title}</h4>
+                                            <p>{p.description}</p>
+                                            <p>{p.quantity}</p>
+                                            <p>{p.price}</p>
+                                            <button onClick={() => this.addToCart(p)}>Add To Cart</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                    }
+    
+                    <h2>Cars</h2>
+                    {
+                        this.state.cars
+                            .map(p =>( 
+                                <div key={p.id} className="product">
+                                    <div className="">
+                                        <div className="column">
+                                            <img src={p.imageUrl} alt="product" />
+                                        </div>
+                                        <div className="column">
+                                            <h4>{p.title}</h4>
+                                            <p>{p.description}</p>
+                                            <p>{p.quantity}</p>
+                                            <p>{p.price}</p>
+                                            <button onClick={() => this.addToCart(p)}>Add To Cart</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                    }
+    
+                    <h2>Humans</h2>
+                    {
+                        this.state.humans
+                            .map(p =>( 
+                                <div key={p.id} className="product">
+                                    <div className="">
+                                        <div className="column">
+                                            <img src={p.imageUrl} alt="product" />
+                                        </div>
+                                        <div className="column">
+                                            <h4>{p.title}</h4>
+                                            <p>{p.description}</p>
+                                            <p>{p.quantity}</p>
+                                            <p>{p.price}</p>
+                                            <button onClick={() => this.addToCart(p)}>Add To Cart</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                    }
+                  </section>
+                </div>
+                    
+                  <div className="column bg-black">
+                    <section className="cart">
+                        <h1>Cart</h1>
+                        <h2>Total $
+                        {this.state.cart.reduce(
+                            (totalPrice, product) => (totalPrice += product.price * product.quantity),0
+                        )}
+                        </h2>
+                        <div className="App">
+                            <div className="column">
+                                <input type="text" placeholder="address" onChange={this.handleAddressInput} value={this.state.address}/>
+                            </div>
+                            <div className="column">
+                                <input type="text" placeholder="credit card number" onChange={this.handleCreditCardInput} value={this.state.creditCard}/>
+                            </div>
+                        </div>
+                        <button onClick={this.checkout}> Checkout </button>
+    
+                        {
+                        this.state.cart
+                            .map(cartItem =>( 
+                                <div key={cartItem.id} className="product">
+                                    <div className="App">
+                                        <div className="column">
+                                            <img src={cartItem.imageUrl} alt="product" />
+                                        </div>
+                                        <div className="column">
+                                            <h4>{cartItem.title}</h4>
+                                            <p>{cartItem.description}</p>
+                                            <p>{cartItem.quantity}</p>
+                                            <p>{cartItem.price}</p>
+                                            <button onClick={() => this.deleteFromCart(cartItem.id)}> Remove from Cart </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                    }
+                    </section>
+                  </div>
+                </div>
+              )
+        }
     }
 }
