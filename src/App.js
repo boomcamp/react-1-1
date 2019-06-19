@@ -36,12 +36,19 @@ export default class App extends Component {
                 }
             ],
         };
+        this.checkout = this.checkout.bind(this);
     }
 
     addToCart(product){
         this.setState({
             cart: [...this.state.cart, product]
         })
+    }
+    checkout(){
+        this.setState({
+            cart: [],
+        })
+        alert('Purchase is complete!');
     }
 
     render(){
@@ -120,6 +127,7 @@ export default class App extends Component {
                         (totalPrice, product) => (totalPrice += product.price),0
                     )}
                     </h2>
+                    <button onClick={this.checkout}> Checkout </button>
                     {
                     this.state.cart
                         .map(cartItem =>( 
@@ -132,7 +140,6 @@ export default class App extends Component {
                                         <h4>{cartItem.title}</h4>
                                         <p>{cartItem.description}</p>
                                         <p>{cartItem.price}</p>
-                                        <button onClick={() => this.addToCart(cartItem)}>Add To Cart</button>
                                     </div>
                                 </div>
                             </div>
