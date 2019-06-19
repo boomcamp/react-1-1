@@ -37,6 +37,19 @@ class App extends Component{
             cart: []
         };
     }
+
+    render(){
+        return(
+            <div className="App">
+                <section className="products">
+                    <h1>Products</h1>
+                </section>
+                <section className="cart">
+                    <h1>Cart</h1>
+                </section>
+            </div>
+        )
+    }
 }
 
 export default App;
