@@ -59,7 +59,19 @@ export default class App extends Component {
                 
               <div className="column bg-black">
                 <section className="cart">
-                        <h1>Cart</h1>
+                    <h1>Cart</h1>
+                    {
+                    this.state.cart
+                        .map(cartItem =>( 
+                            <div key={cartItem.id} className="product">
+                                <img src={cartItem.imageUrl} alt="product" />
+                                <h4>{cartItem.title}</h4>
+                                <p>{cartItem.description}</p>
+                                <p>{cartItem.price}</p>
+                                <button onClick={() => this.addToCart(cartItem)}>Add To Cart</button>
+                            </div>
+                        ))
+                }
                 </section>
               </div>
             </div>
