@@ -5,7 +5,8 @@ export default class App extends Component {
     constructor() {
         super();
         this.state = {
-            products: [
+            cart: [],
+            Motorcycles: [
                 {
                     id: 1,
                     imageUrl: 'https://via.placeholder.com/150x150',
@@ -23,28 +24,29 @@ export default class App extends Component {
                 {
                     id: 3,
                     imageUrl: 'https://via.placeholder.com/150x150',
+                    title: 'Airflite Helmet',
+                    price: 4500,
+                    description: 'Its chin vent is functional to flow air and terrify a la a Hannibal Lecter face mask. Intake vents snort in so much fresh air that you can smell pedestrians fear as youre rolling down the block.',
+                    
+                },
+            ],
+
+            Headgears: [ 
+                {
+                    id: 4,
+                    imageUrl: 'https://via.placeholder.com/150x150',
                     title: 'Ford Ranger',
                     price: 2000000,
                     description: 'Full to midsized SUV 2/4-door model with front engine placement; introduced in 1982. Features a 6G75 3.8L, V-6 cylindere engine producing 247HP power.',
                 },
                 {
-                    id: 4,
-                    imageUrl: 'https://via.placeholder.com/150x150',
-                    title: 'Toyota Fortuner',
-                    price: 2100000,
-                    description: 'The Fortuner is a 7 seater SUV and has a length of 4795mm, width of 1855mm and a wheelbase of 2745m.',
-                    
-                },
-                {
                     id: 5,
                     imageUrl: 'https://via.placeholder.com/150x150',
-                    title: 'Toyota Hi-ace',
-                    price: 2900000,
-                    description: 'The Fortuner is a 7 seater SUV and has a length of 4795mm, width of 1855mm and a wheelbase of 2745m.',
-                    
+                    title: 'Honda Handle Bar',
+                    price: 2100000,
+                    description: 'Knurled & Drilled for wires like the OEM type. and 3" at the ends of the bars. also have slightly taller 72 CB750 low bars also have the taller/wider 73 and up bars.',
                 },
             ],
-            cart: [],
         }
     }
     
