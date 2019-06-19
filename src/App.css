@@ -18,10 +18,10 @@ body{
     flex-direction: column;
 }
 
-.product{
+.products .product{
     border: 1px solid black;
     margin-bottom: 1%;
-    width: 50%;
+    width: 75%;
 }
 
 .cart{
@@ -29,4 +29,10 @@ body{
     background-color: black;
     color: white;
     padding-left: 5%;
+}
+
+.cart .product{
+    border: 1px solid white;
+    margin-bottom: 1%;
+    width: 75%;
 }
