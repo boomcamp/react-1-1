@@ -33,13 +33,29 @@ export default class App extends Component {
     render(){
         return(
             <div className="App">
+            <div className="column">
               <section className="products">
                 <h1>Products</h1>
+                {
+                    this.state.products
+                        .map(p =>( 
+                            <div key={p.id} className="product">
+                                <img src={p.imageUrl} alt="product image" />
+                                <h4>{p.title}</h4>
+                                <p>{p.description}</p>
+                                <p>{p.price}</p>
+                                <button>Add To Cart</button>
+                            </div>
+                        ))
+                }
               </section>
-        
-              <section className="cart">
-                <h1>Cart</h1>
-              </section>
+            </div>
+                
+              <div className="column bg-black">
+                <section className="cart">
+                        <h1>Cart</h1>
+                </section>
+              </div>
             </div>
           )
     }
