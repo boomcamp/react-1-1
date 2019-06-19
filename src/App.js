@@ -62,6 +62,11 @@ class App extends Component{
         )
     }
 
+    checkout = () => {
+        this.setState({ cart: [] });
+        alert('Purchase is complete!');
+    };
+
     render(){
         return(
             <div className="App">
@@ -109,6 +114,7 @@ class App extends Component{
                         )
                     }
                     </h2>
+                    <button onClick={this.checkout}>Checkout</button>
                     {
                         this.state.cart.map(
                             item => (
