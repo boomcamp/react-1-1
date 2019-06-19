@@ -121,6 +121,7 @@ export default class App extends Component {
                                     <div className="column">
                                         <h4>{p.title}</h4>
                                         <p>{p.description}</p>
+                                        <p>{p.quantity}</p>
                                         <p>{p.price}</p>
                                         <button onClick={() => this.addToCart(p)}>Add To Cart</button>
                                     </div>
@@ -141,6 +142,7 @@ export default class App extends Component {
                                     <div className="column">
                                         <h4>{p.title}</h4>
                                         <p>{p.description}</p>
+                                        <p>{p.quantity}</p>
                                         <p>{p.price}</p>
                                         <button onClick={() => this.addToCart(p)}>Add To Cart</button>
                                     </div>
