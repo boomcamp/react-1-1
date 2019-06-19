@@ -10,7 +10,7 @@ export default class App extends Component {
           {
             id: 1,
             imageUrl: 'https://via.placeholder.com/150x150',
-            title: 'asdfsdafasd',
+            title: 'Titan',
             price: 12.99,
             description: 'dipisicing elit. Quasi libero nemo dolorem soluta laborum, sequi natus quisquam consequuntur, iusto repellendus ab ',
             quantity: 0 ,
@@ -150,7 +150,7 @@ export default class App extends Component {
             <h4 className="section-title">Hats</h4>
             {
               this.state.hats.map( element => (
-                <div key={element.id} className="product">
+                <div key={element.id}  className={this.state.cardView ? "product" : " product flexed"}>
                   <img src={element.imageUrl} />
                   <div className="product-description">
                     <h4>{element.title}</h4>
