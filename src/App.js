@@ -4,29 +4,37 @@ export default class App extends Component {
     constructor(){
         super();
         this.state = {
-            products : 
-            [{
-                id: 1,
-                imageUrl: 'https://via.placeholder.com/150x150',
-                title: 'House & Lot',
-                price: 100,
-                description: 'With furnitures inside',
-            },
-            {
-                id: 2,
-                imageUrl: 'https://via.placeholder.com/150x150',
-                title: 'Red Car',
-                price: 90,
-                description: 'With free 1 gallon of gas',
-            },
-            {
-                id: 3,
-                imageUrl: 'https://via.placeholder.com/150x150',
-                title: 'Wife',
-                price: 10,
-                description: 'Have 4 babies',
-            }],
             cart: [],
+            houses: 
+            [
+                {
+                    id: 1,
+                    imageUrl: 'https://via.placeholder.com/150x150',
+                    title: 'House & Lot',
+                    price: 100,
+                    description: 'With furnitures inside',
+                }
+            ],
+            cars: 
+            [
+                {
+                    id: 2,
+                    imageUrl: 'https://via.placeholder.com/150x150',
+                    title: 'Red Car',
+                    price: 90,
+                    description: 'With free 1 gallon of gas',
+                }
+            ],
+            humans: 
+            [
+                {
+                    id: 3,
+                    imageUrl: 'https://via.placeholder.com/150x150',
+                    title: 'Wife',
+                    price: 10,
+                    description: 'Have 4 babies',
+                }
+            ],
         };
     }
 
