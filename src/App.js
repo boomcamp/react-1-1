@@ -63,7 +63,7 @@ class App extends Component{
     }
 
     addToCart(product){
-        let cpyCart = this.state.cart.map(p => Object.assign({}, p));
+        let cpyCart = [...this.state.cart];
         let index = this.state.cart.findIndex(p => p.id === product.id);
         if(index === -1){ 
             product = Object.assign({}, product, { quantity: 1 });
@@ -76,7 +76,7 @@ class App extends Component{
                 cart: cpyCart,
             });
         }
-        
+
         this.checkout = this.checkout.bind(this);
         this.handleAddressInput = this.handleAddressInput.bind(this);
         this.handleCreditCardInput = this.handleCreditCardInput.bind(this);
@@ -142,7 +142,7 @@ class App extends Component{
                     <h2>Total: $
                     {
                         this.state.cart.reduce(
-                            (totalPrice, product) => (totalPrice += product.price),0
+                            (totalPrice, product) => (totalPrice += product.price * product.quantity),0
                         )
                     }
                     </h2>
