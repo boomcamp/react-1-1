@@ -4,9 +4,10 @@ export default class App extends Component{
     constructor(){
         super();
         this.state = {
-
+          cardview: 'true',
           address: '',
           creditCard: '',
+
             // products: [
             //     {
             //         id: 1,
@@ -40,6 +41,7 @@ export default class App extends Component{
                     'Headgear commonly used by fishermen. Increases fishing skill marginally.',
                   price: 12.99,
                   imageUrl: 'https://via.placeholder.com/150x150',
+                  quantity: 0,
                 },
                 {
                   id: 2,
@@ -47,6 +49,7 @@ export default class App extends Component{
                   description: 'Uncomfortable, but sturdy.',
                   price: 8.99,
                   imageUrl: 'https://via.placeholder.com/150x150',
+                  quantity: 0,
                 },
               ],
             beachGear: [
@@ -56,6 +59,7 @@ export default class App extends Component{
                   description: 'Portable shelter.',
                   price: 312.99,
                   imageUrl: 'https://via.placeholder.com/150x150',
+                  quantity: 0,
                 },
               ],
             shirts: [
@@ -65,6 +69,7 @@ export default class App extends Component{
                   description: '100% Cotton',
                   price: 42.99,
                   imageUrl: 'https://cdn.ccs.com/media/catalog/product/cache/4/image/9df78eab33525d08d6e5fb8d27136e95/v/a/vans-classic-boys-t-shirt-burgundy-white.1506704118.jpg',
+                  quantity: 0,
                 },
                 {
                   id: 5,
@@ -72,6 +77,7 @@ export default class App extends Component{
                   description: 'Get your shine on!',
                   price: 95.99,
                   imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRny4ePV2vAA6tXlqsHPRijmvOxtdHXYB7CLgdrOxOAsCT1YBKg',
+                  quantity: 0,
                 },
                 {
                   id: 6,
@@ -79,6 +85,7 @@ export default class App extends Component{
                   description: 'Polyester',
                   price: 54.99,
                   imageUrl: 'https://cdn-internetfusion.global.ssl.fastly.net/extremepie.com/545219.jpg?width=500&pad=0,0&bg-color=ffffff',
+                  quantity: 0,
                 },
                 
               ],
@@ -86,10 +93,30 @@ export default class App extends Component{
         }
     }
 
-    addToCart(item){
-        this.setState({
-            cart: [...this.state.cart, item]
-        })
+    addToCart(item) {
+      let cartCopy = this.state.cart.map(product => Object.assign({}, product));
+      let index = this.state.cart.findIndex(product => product.id === item.id);
+  
+      if (index === -1) {
+        item = Object.assign({}, item, { quantity: 1 });
+        this.setState({ cart: [...this.state.cart, item] });
+      } else {
+        cartCopy[index].quantity++;
+        this.setState({ cart: cartCopy });
+      }
+    }
+
+    deleteFromCart(id) {
+      let cartCopy = this.state.cart.map(product => Object.assign({}, product));
+      let index = this.state.cart.findIndex(product => product.id === id);
+  
+      if (cartCopy[index].quantity === 1) {
+        cartCopy.splice(index, 1);
+      } else if (cartCopy[index].quantity > 1) {
+        cartCopy[index].quantity--;
+      }
+  
+      this.setState({ cart: cartCopy });
     }
 
     checkout = () => {
@@ -117,7 +144,7 @@ export default class App extends Component{
                   <h2>Hats</h2>
                   {this.state.hats.map(item => (
                     <div key={item.id} className="product">
-                      <img src={item.imageUrl} />
+                      <img src={item.imageUrl} alt=""/>
                       <div className="product-info">
                       <h4>{item.title}</h4>
                       <p>{item.description}</p>
@@ -130,7 +157,7 @@ export default class App extends Component{
                   <h2>Beach Gear</h2>
                   {this.state.beachGear.map(item => (
                     <div key={item.id} className="product">
-                      <img src={item.imageUrl} />
+                      <img src={item.imageUrl} alt="" />
                       <div className="product-info">
                       <h4>{item.title}</h4>
                       <p>{item.description}</p>
@@ -143,7 +170,7 @@ export default class App extends Component{
                 <h2>Shirts</h2>
                   {this.state.shirts.map(item => (
                     <div key={item.id} className="product">
-                      <img src={item.imageUrl} />
+                      <img src={item.imageUrl} alt=""/>
                       <div className="product-info">
                       <h4>{item.title}</h4>
                       <p>{item.description}</p>
@@ -161,7 +188,7 @@ export default class App extends Component{
                     <h2>
                       Total: $
                       {this.state.cart.reduce(
-                        (totalPrice, product) => (totalPrice += product.price),
+                        (totalPrice, product) => (totalPrice += product.price * product.quantity),
                         0
                       )}
                       </h2>
@@ -182,11 +209,14 @@ export default class App extends Component{
                       <button onClick={this.checkout}>CheckOut</button>
                     {this.state.cart.map(item => (
                         <div key={item.id} className="product">
-                        <img src={item.imageUrl} />
+                        <img src={item.imageUrl} alt="" />
                         <div className="product-info">
                         <h4>{item.title}</h4>
+                        <p>Quantity: {item.quantity}</p>
                         <p>{item.description}</p>
                         <p>{item.price}</p>
+
+                        <button onClick = {() => this.deleteFromCart(item.id)}>Remove From Cart</button>
                         </div>
                     </div>
                     ))
