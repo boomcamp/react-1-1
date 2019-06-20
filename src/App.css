@@ -52,6 +52,17 @@
     margin-top: 6px;
   }
   
+  .btn-remove {
+    background-color: #0f9a81;  
+    border: none;
+    color: white;
+    padding: 9px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 25px;
+    margin-top: 6px;
+  }
+
   .content {
     display: flex;
   }

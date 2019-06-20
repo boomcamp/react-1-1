@@ -69,6 +69,18 @@ export default class App extends Component {
         }
     }
 
+    deleteFromCart(id) {
+        let cartItem = this.state.cart.map(product => Object.assign({}, product));
+        let index = this.state.cart.findIndex(product => product.id == id);
+
+        if (cartItem[index].quantity == 1) {
+            cartItem.splice(index, 1);
+        } else if (cartItem[index].quantity > 1) {
+            cartItem[index].quantity--;
+        }
+        this.setState({cart: cartItem});
+    }
+
     checkout = () => {
         if (this.state.address.length > 0 && this.state.creditCard.length > 0) {
             this.setState({cart: []});
@@ -154,6 +166,8 @@ export default class App extends Component {
                                     <p>Price: {item.price}</p>
                                     <p>Quantity: {item.quantity}</p>
                                     <p>{item.description}</p>
+                                    <button className="btn-remove" onClick={() => this.deleteFromCart(item.id)} >Remove from Cart</button>
+                                    
                                 </div>
                             </div>
                         </div>
