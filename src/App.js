@@ -9,6 +9,7 @@ export default class App extends Component {
       cart: [],
       address: "",
       creditCard: "",
+      cardView: true,
       hats: [
         {
           id: 1,
@@ -89,11 +90,16 @@ export default class App extends Component {
     })
   }
 
+  handleToggleView = () => {
+    this.setState({ cardView: !this.state.cardView });
+  };
+
   render() {
     return (
       <div className="App">
         <section className="products">
           <h1>Products</h1>
+          <button onClick={this.handleToggleView}>Toggle View</button>
           <h2>Hats</h2>
           {
             this.state.hats.map(item => (
