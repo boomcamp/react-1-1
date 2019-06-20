@@ -47,6 +47,14 @@ export default class App extends Component {
     alert('Purchase is complete!');
   };
 
+  handleAddressInput(e) {
+    this.setState({ address: e.target.value });
+  }
+
+  handleCreditCardInput(e) {
+    this.setState({ creditCard: e.target.value });
+  }
+
   render() {
     return (
       <div className="App">
@@ -95,7 +103,14 @@ export default class App extends Component {
               (totalPrice, product) => (totalPrice += product.price),0
             )}
           </h2>
+
+          <div className="inputs">
+            <input placeholder="address" value={this.state.address} onChange={this.handleAddressInput} />
+            <input placeholder="credit card number" value={this.state.creditCard} onChange={this.handleCreditCardInput} />
+          </div>
+
           <button onClick={this.checkout}>Checkout</button>
+          
           {this.state.cart
             .map(cartItem =>( 
               <div key={cartItem.id} className="product">

@@ -41,3 +41,7 @@
 .product-list {
   margin-bottom: 24px;
 }
+
+.inputs input:not(:last-child) {
+  margin-right: 10px;
+}
