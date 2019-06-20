@@ -132,7 +132,7 @@ export default class App extends Component {
                     <h1>Cart</h1>
                     <h2>Total: $
                         {this.state.cart.reduce(
-                            (totlaPrice, product) => (totlaPrice += product.price), 
+                            (totlaPrice, product) => (totlaPrice += product.price * product.quantity), 
                             0
                         )}
                     </h2>
@@ -150,8 +150,9 @@ export default class App extends Component {
                                     <img src={item.imageUrl} height="150" width="180" />
                                 </div>
                                 <div className="details">
-                                    <h4>{item.title}</h4>
-                                    <p>{item.price}</p>
+                                    <p>Product Name: {item.title}</p>
+                                    <p>Price: {item.price}</p>
+                                    <p>Quantity: {item.quantity}</p>
                                     <p>{item.description}</p>
                                 </div>
                             </div>
