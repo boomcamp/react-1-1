@@ -65,6 +65,7 @@ class App extends Component{
         this.checkout = this.checkout.bind(this);
         this.handleAddressInput = this.handleAddressInput.bind(this);
         this.handleCreditCardInput = this.handleCreditCardInput.bind(this);
+        this.handleToggleView = this.handleToggleView.bind(this);
     }
 
     addToCart(product){
@@ -128,86 +129,169 @@ class App extends Component{
     } 
 
     render(){
-        return(
-            <div className="App">
-                <section className="products">
-                    <button onclick={this.handleToggleView}>Toggle View</button>
-                    <h1>Products</h1>
-                    <h2>Coins</h2>
-                    {
-                        this.state.coins.map(
-                            item => (
-                                <div key={item.id} className="product">
-                                    <img src={item.imageUrl} />
-                                    <div className="product-info">
-                                        <h4>Name: {item.title}</h4>
-                                        <p>Description: {item.description}</p>
-                                        <p>Price: ${item.price}</p>
-                                        <button onClick={() => this.addToCart(item)}>Add to Cart</button>
+        if(this.state.cardView){
+            return(
+                <div className="App">
+                    <section className="products">
+                        <button onClick={this.handleToggleView}>Toggle View</button>
+                        <h1>Products</h1>
+                        <h2>Coins</h2>
+                        {
+                            this.state.coins.map(
+                                item => (
+                                    <div key={item.id} className="product">
+                                        <img src={item.imageUrl} />
+                                        <div className="product-info">
+                                            <h4>Name: {item.title}</h4>
+                                            <p>Description: {item.description}</p>
+                                            <p>Price: ${item.price}</p>
+                                            <button onClick={() => this.addToCart(item)}>Add to Cart</button>
+                                        </div>
                                     </div>
-                                </div>
+                                )
                             )
-                        )
-                    }
-                    <h3>Other Coins</h3>
-                    {
-                        this.state.others.map(
-                            item => (
-                                <div key={item.id} className="product">
-                                    <img src={item.imageUrl} />
-                                    <div className="product-info">
-                                        <h4>Name: {item.title}</h4>
-                                        <p>Description: {item.description}</p>
-                                        <p>Price: ${item.price}</p>
-                                        <button onClick={() => this.addToCart(item)}>Add to Cart</button>
+                        }
+                        <h3>Other Coins</h3>
+                        {
+                            this.state.others.map(
+                                item => (
+                                    <div key={item.id} className="product">
+                                        <img src={item.imageUrl} />
+                                        <div className="product-info">
+                                            <h4>Name: {item.title}</h4>
+                                            <p>Description: {item.description}</p>
+                                            <p>Price: ${item.price}</p>
+                                            <button onClick={() => this.addToCart(item)}>Add to Cart</button>
+                                        </div>
                                     </div>
-                                </div>
+                                )
                             )
-                        )
-                    }
-                </section>
-                <section className="cart">
-                    <h1>Cart</h1>
-                    <h2>Total: $
-                    {
-                        this.state.cart.reduce(
-                            (totalPrice, product) => (totalPrice += product.price * product.quantity),0
-                        )
-                    }
-                    </h2>
-                    <div className="inputs">
-                        <input
-                        placeholder="address"
-                        value={this.state.address}
-                        onChange={this.handleAddressInput}
-                        />
-                        <input
-                        placeholder="credit card number"
-                        value={this.state.creditCard}
-                        onChange={this.handleCreditCardInput}
-                        />
-                    </div>
-                    <button onClick={this.checkout}>Checkout</button>
-                    {
-                        this.state.cart.map(
-                            item => (
-                                <div key={item.id} className="product">
-                                    <img src={item.imageUrl} />
-                                    <div className="product-info">
-                                        <h4>Name: {item.title}</h4>
-                                        <p>Description: {item.description}</p>
-                                        <p>Price: ${item.price}</p>
-                                        <p>Quantity: {item.quantity}</p>
-                                        <button onClick={() => this.removeFromCart(item)}>Remove Item</button>
+                        }
+                    </section>
+                    <section className="cart">
+                        <h1>Cart</h1>
+                        <h2>Total: $
+                        {
+                            this.state.cart.reduce(
+                                (totalPrice, product) => (totalPrice += product.price * product.quantity),0
+                            )
+                        }
+                        </h2>
+                        <div className="inputs">
+                            <input
+                            placeholder="address"
+                            value={this.state.address}
+                            onChange={this.handleAddressInput}
+                            />
+                            <input
+                            placeholder="credit card number"
+                            value={this.state.creditCard}
+                            onChange={this.handleCreditCardInput}
+                            />
+                        </div>
+                        <button onClick={this.checkout}>Checkout</button>
+                        {
+                            this.state.cart.map(
+                                item => (
+                                    <div key={item.id} className="product">
+                                        <img src={item.imageUrl} />
+                                        <div className="product-info">
+                                            <h4>Name: {item.title}</h4>
+                                            <p>Description: {item.description}</p>
+                                            <p>Price: ${item.price}</p>
+                                            <p>Quantity: {item.quantity}</p>
+                                            <button onClick={() => this.removeFromCart(item)}>Remove Item</button>
+                                        </div>
                                     </div>
-                                </div>
+                                )
                             )
-                        )
-                    }
-                </section>
-            </div>
-        )
+                        }
+                    </section>
+                </div>
+            )
+        }else{
+            return(
+                <div className="App">
+                    <section className="products-reverse">
+                        <button onClick={this.handleToggleView}>Toggle View</button>
+                        <h1>Products</h1>
+                        <h2>Coins</h2>
+                        {
+                            this.state.coins.map(
+                                item => (
+                                    <div key={item.id} className="product-reverse">
+                                        <img src={item.imageUrl} />
+                                        <div className="product-info">
+                                            <h4>Name: {item.title}</h4>
+                                            <p>Description: {item.description}</p>
+                                            <p>Price: ${item.price}</p>
+                                            <button onClick={() => this.addToCart(item)}>Add to Cart</button>
+                                        </div>
+                                    </div>
+                                )
+                            )
+                        }
+                        <h3>Other Coins</h3>
+                        {
+                            this.state.others.map(
+                                item => (
+                                    <div key={item.id} className="product-reverse">
+                                        <img src={item.imageUrl} />
+                                        <div className="product-info">
+                                            <h4>Name: {item.title}</h4>
+                                            <p>Description: {item.description}</p>
+                                            <p>Price: ${item.price}</p>
+                                            <button onClick={() => this.addToCart(item)}>Add to Cart</button>
+                                        </div>
+                                    </div>
+                                )
+                            )
+                        }
+                    </section>
+                    <section className="cart-reverse">
+                        <h1>Cart</h1>
+                        <h2>Total: $
+                        {
+                            this.state.cart.reduce(
+                                (totalPrice, product) => (totalPrice += product.price * product.quantity),0
+                            )
+                        }
+                        </h2>
+                        <div className="inputs">
+                            <input
+                            placeholder="address"
+                            value={this.state.address}
+                            onChange={this.handleAddressInput}
+                            />
+                            <input
+                            placeholder="credit card number"
+                            value={this.state.creditCard}
+                            onChange={this.handleCreditCardInput}
+                            />
+                        </div>
+                        <button onClick={this.checkout}>Checkout</button>
+                        {
+                            this.state.cart.map(
+                                item => (
+                                    <div key={item.id} className="product-reverse">
+                                        <img src={item.imageUrl} />
+                                        <div className="product-info">
+                                            <h4>Name: {item.title}</h4>
+                                            <p>Description: {item.description}</p>
+                                            <p>Price: ${item.price}</p>
+                                            <p>Quantity: {item.quantity}</p>
+                                            <button onClick={() => this.removeFromCart(item)}>Remove Item</button>
+                                        </div>
+                                    </div>
+                                )
+                            )
+                        }
+                    </section>
+                </div>
+            )
+        }
     }
+        
 }
 
 export default App;
