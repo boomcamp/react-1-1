@@ -16,14 +16,16 @@ export default class App extends Component {
           description:
             "Headgear commonly used by fishermen. Increases fishing skill marginally.",
           price: 12.99,
-          imageUrl: "https://via.placeholder.com/150x150"
+          imageUrl: "https://via.placeholder.com/150x150",
+          quantity: 0
         },
         {
           id: 2,
           title: "Metal Hat",
           description: "Uncomfortable, but sturdy.",
           price: 8.99,
-          imageUrl: "https://via.placeholder.com/150x150"
+          imageUrl: "https://via.placeholder.com/150x150",
+          quantity: 0
         }
       ],
       beachGear: [
@@ -32,16 +34,27 @@ export default class App extends Component {
           title: "Tent",
           description: "Portable shelter.",
           price: 32.99,
-          imageUrl: "https://via.placeholder.com/150x150"
+          imageUrl: "https://via.placeholder.com/150x150",
+          quantity: 0
         }
       ]
     }
   }
 
-  addToCart(item) {
-    this.setState({
-      cart: [...this.state.cart, item],
-    });
+  addToCart(product) {
+    let copyCart = [...this.state.cart];
+    let index = this.state.cart.findIndex(p => p.id === product.id);
+    if(index === -1){ 
+        product = Object.assign({},product,{ quantity: 1 });
+            this.setState({
+                cart: [...this.state.cart, product]
+            })
+    }else{
+        copyCart[index].quantity++;
+        this.setState({
+            cart: copyCart,
+        });
+    }
   }
 
   checkout = () => {
@@ -106,7 +119,7 @@ export default class App extends Component {
           <h2>
             Total: $
             {this.state.cart.reduce(
-              (totalPrice, product) => (totalPrice += product.price),0
+              (totalPrice, product) => (totalPrice += product.price * product.quantity),0
             )}
           </h2>
 
@@ -124,7 +137,8 @@ export default class App extends Component {
                   <h4>{cartItem.title}</h4>
                   <p>{cartItem.description}</p>
                   <p>{cartItem.price}</p>
-                  <button onClick={() => this.addToCart(cartItem)}>Add To Cart</button>
+                  <p>{cartItem.quantity}</p>
+                  <button onClick={() => this.addToCart(cartItem)}>Remove from cart</button>
               </div>
             ))
           }
