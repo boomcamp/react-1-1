@@ -47,7 +47,7 @@ export default class App extends Component {
 		let i = this.state.cart.findIndex(product => product.id === item.id);
 
 		
-		if(i === -1){
+		if(i < 0){
 			item = Object.assign({}, item, {quantity: 1});
 			this.setState({
 				cart: [...this.state.cart, item]
@@ -108,7 +108,6 @@ export default class App extends Component {
 							<div className="product-info">
 								<img src={item.imageUrl} />
 								<h4>{item.title}</h4>
-								<p>Qty: {item.quantity}</p>
 								<p>{item.description}</p>
 								<p>{item.price}</p>
 								<button onClick={() => this.addToCart(item)}>Add to Cart</button>
@@ -119,10 +118,9 @@ export default class App extends Component {
 					<h2>Beach Gear</h2>
 					{this.state.beachGear.map(item => (
 						<div key={item.id} className="product">
-							<img src={item.imageUrl} />
 							<div className="product-info">
+							<img src={item.imageUrl} />
 								<h4>{item.title}</h4>
-								<p>Qty: {item.quantity}</p>
 								<p>{item.description}</p>
 								<p>{item.price}</p>
 								<button onClick={() => this.addToCart(item)}>Add to Cart</button>
@@ -142,12 +140,12 @@ export default class App extends Component {
 
 					<div className="inputs">
 						<input
-							placeholder="address"
+							placeholder="Enter address"
 							value={this.state.address}
 							onChange={this.handleAddressInput}
 						/>
 						<input
-							placeholder="credit card number"
+							placeholder="Enter credit card number"
 							value={this.state.creditCard}
 							onChange={this.handleCreditCardInput}
 						/>
