@@ -6,31 +6,34 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      products: [
+      cart: [],
+      hats: [
         {
           id: 1,
-          imageUrl: 'https://via.placeholder.com/150x150',
-          title: 'fancy hat',
+          title: "Fisherman's Hat",
+          description:
+            "Headgear commonly used by fishermen. Increases fishing skill marginally.",
           price: 12.99,
-          description: 'has a feather in it.',
+          imageUrl: "https://via.placeholder.com/150x150"
         },
         {
           id: 2,
-          imageUrl: 'https://via.placeholder.com/150x150',
-          title: 'fancy car',
-          price: 15750.45,
-          description: 'goes vroom vroom.',
-        },
+          title: "Metal Hat",
+          description: "Uncomfortable, but sturdy.",
+          price: 8.99,
+          imageUrl: "https://via.placeholder.com/150x150"
+        }
+      ],
+      beachGear: [
         {
           id: 3,
-          imageUrl: 'https://via.placeholder.com/150x150',
-          title: 'simple rock',
-          price: 5.0,
-          description: 'it is a rock',
-        },
-      ],
-      cart: [],
-    };
+          title: "Tent",
+          description: "Portable shelter.",
+          price: 32.99,
+          imageUrl: "https://via.placeholder.com/150x150"
+        }
+      ]
+    }
   }
 
   addToCart(item) {
