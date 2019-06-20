@@ -74,6 +74,21 @@ export default class App extends Component {
     this.setState({ creditCard: e.target.value });
   }
 
+  deleteFromCart(id){
+    let copyCart = [...this.state.cart];
+    let index = this.state.cart.findIndex(p => p.id === id);
+
+    if(copyCart[index].quantity===1){
+        copyCart = copyCart.filter(c => c.id !== copyCart[index].id);
+    }else{
+        copyCart[index].quantity-=1;
+    }
+    console.log(copyCart);
+    this.setState({
+        cart: copyCart
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -139,7 +154,7 @@ export default class App extends Component {
                     <p>{cartItem.description}</p>
                     <p>{cartItem.price}</p>
                     <p>{cartItem.quantity}</p>
-                    <button onClick={() => this.addToCart(cartItem)}>Remove from cart</button>
+                    <button onClick={() => this.deleteFromCart(cartItem.id)}> Remove from Cart </button>
                   </div>
               </div>
             ))
