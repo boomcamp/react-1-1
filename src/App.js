@@ -58,7 +58,8 @@ class App extends Component{
                 }
             ],
             address: "",
-            creditCard: ""
+            creditCard: "",
+            cardView: true
         };
         // didnt realize i put this on the addToCart
         this.checkout = this.checkout.bind(this);
@@ -87,7 +88,7 @@ class App extends Component{
         let cpyCart = [...this.state.cart];
         let index = this.state.cart.findIndex(p => p.id === product.id);
 
-        if(cpyCart[index].quantity === 0){
+        if(cpyCart[index].quantity === 1){
             cpyCart = cpyCart.filter(cart => cart.id !== cpyCart[index].id);
         }else{
             cpyCart[index].quantity -= 1;
@@ -114,10 +115,23 @@ class App extends Component{
         this.setState({ creditCard: e.target.value });
     };
 
+    handleToggleView(){
+        if(this.state.cardView){
+            this.setState({
+                cardView: false
+            });
+        }else{
+            this.setState({
+                cardView: true
+            });
+        }
+    } 
+
     render(){
         return(
             <div className="App">
                 <section className="products">
+                    <button onclick={this.handleToggleView}>Toggle View</button>
                     <h1>Products</h1>
                     <h2>Coins</h2>
                     {
