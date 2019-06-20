@@ -3,7 +3,7 @@
 
 .App{
     display: flex;
-    height: 50vw;
+    height: 70vw;
     background: #F2F2F4
 }
 
@@ -11,9 +11,19 @@
     width: 50%;
     margin-left: 20px;
 }
+
+.products button{ 
+    width: 100px;
+    margin-left: 20px
+}
 .product-wrap{
     width:80%;
     display: flex;
+    margin-top: 20px;
+}
+
+.product-wrap-noflex{
+    width:80%;
     margin-top: 20px;
 }
 
@@ -24,6 +34,11 @@
 .product img{
     width: 150px;
     height: 150px;
+}
+
+.product button{
+ width: 100px;
+ margin-left: 1px;
 }
 
 .products h1,h2{
@@ -70,7 +85,7 @@
 }
 
 .cart .product{
-margin-top: 20px;
+margin-top: 10px;
 }
 
 .cart .product-info{
@@ -80,5 +95,10 @@ margin-left: 20px
 
 .cart img{
     margin-left: 3px
+}
+
+.cart .product button{
+    margin-left: 0px;
+    width: 140px;
 }
 

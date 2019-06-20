@@ -8,6 +8,7 @@
               cart: [],
               address: "",
               creditCard: "",
+              cardview: true,
               hats: [
                 {
                   id: 1,
@@ -38,6 +39,8 @@
                 }
               ]
             };
+
+            // this.deleteFromCart = this.deleteFromCart.bind(this)
           }
 
     addToCart(item) {
@@ -52,6 +55,19 @@
               this.setState({ cart: cartCopy });
             }
     }
+
+    deleteFromCart(id) {
+        let cartCopy = this.state.cart.map(product => Object.assign({}, product));
+        let index = this.state.cart.findIndex(product => product.id === id);
+    
+        if (cartCopy[index].quantity === 1) {
+          cartCopy.splice(index, 1);
+        } else if (cartCopy[index].quantity > 1) {
+          cartCopy[index].quantity--;
+        }
+    
+        this.setState({ cart: cartCopy });
+      }
     
     checkout = () => {
         if (this.state.address.length > 0 && this.state.creditCard.length > 0) {
@@ -70,17 +86,27 @@
         this.setState({ creditCard: e.target.value });
       };
 
+      handleClick = () =>  {
+        this.setState({
+          cardview: !this.state.cardview
+        });
+      }
+      
+
+
+
     render() {
         return (
         <div className="App">
             <section className="products">
             <h1>Products</h1>
+            <button onClick={this.handleClick}>Toggle View</button>
             <h2>Hats</h2>
             {this.state.hats.map(item => (
                 <div key={item.id} className="product">
-                <div className="product-wrap">
-                <img src={item.imageUrl} />
-                <div className="product-info">
+                <div className= {this.state.cardview ? "product-wrap" : "product-wrap-noflex"}>
+                <img src={item.imageUrl} alt='img'/>
+                <div className="product-info"> 
                     <h4>{item.title}</h4>
                     <p>{item.description}</p>
                     <p>{item.price}</p>
@@ -95,8 +121,8 @@
             <h2>Beach Gear</h2>
             {this.state.beachGear.map(item => (
                 <div key={item.id} className="product">
-                <div className="product-wrap">
-                <img src={item.imageUrl} />
+                <div className= {this.state.cardview ? "product-wrap" : "product-wrap-noflex"}>
+                <img src={item.imageUrl} alt='img'/>
                 <div className="product-info">
                     <h4>{item.title}</h4>
                     <p>{item.description}</p>
@@ -117,7 +143,7 @@
                 {this.state.cart.reduce(
                 (totalPrice, product) => (totalPrice += product.price * product.quantity),
                 0
-                ).toFixed(2)}
+                ).toFixed(2)    }
             </h2>
 
             <div className="inputs">
@@ -145,6 +171,9 @@
                     <p>Quantity: {item.quantity}</p>
                     <p>{item.description}</p>
                     <p>{item.price}</p>
+                    <button onClick={() => this.deleteFromCart(item.id)}>
+                  Remove from Cart
+                </button>
                 </div>
                 </div>
                 </div>
