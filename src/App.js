@@ -33,6 +33,12 @@ export default class App extends Component {
     };
   }
 
+  addToCart(item) {
+    this.setState({
+      cart: [...this.state.cart, item],
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -45,7 +51,7 @@ export default class App extends Component {
                 <h4>{item.title}</h4>
                 <p>{item.description}</p>
                 <p>{item.price}</p>
-                <button>Add to Cart</button>
+                <button onClick={() => this.addToCart(item)}>Add to Cart</button>
               </div>
             ))
           }
