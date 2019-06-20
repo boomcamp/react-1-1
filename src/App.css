@@ -1,0 +1,14 @@
+.App{
+    display: flex;
+}
+.products, .cart{
+    width:50vw;
+    padding: 20px;
+}
+.cart {
+    background-color: black;
+    color: white;
+}
+.product{
+    padding: 10px;
+}
