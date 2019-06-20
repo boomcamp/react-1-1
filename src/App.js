@@ -60,6 +60,10 @@ class App extends Component{
             address: "",
             creditCard: ""
         };
+        // didnt realize i put this on the addToCart
+        this.checkout = this.checkout.bind(this);
+        this.handleAddressInput = this.handleAddressInput.bind(this);
+        this.handleCreditCardInput = this.handleCreditCardInput.bind(this);
     }
 
     addToCart(product){
@@ -77,9 +81,20 @@ class App extends Component{
             });
         }
 
-        this.checkout = this.checkout.bind(this);
-        this.handleAddressInput = this.handleAddressInput.bind(this);
-        this.handleCreditCardInput = this.handleCreditCardInput.bind(this);
+    }
+
+    removeFromCart(product){
+        let cpyCart = [...this.state.cart];
+        let index = this.state.cart.findIndex(p => p.id === product.id);
+
+        if(cpyCart[index].quantity === 0){
+            cpyCart = cpyCart.filter(cart => cart.id !== cpyCart[index].id);
+        }else{
+            cpyCart[index].quantity -= 1;
+        }
+        this.setState({
+            cart: cpyCart
+        });
     }
 
     checkout = () => {
@@ -169,6 +184,7 @@ class App extends Component{
                                         <p>Description: {item.description}</p>
                                         <p>Price: ${item.price}</p>
                                         <p>Quantity: {item.quantity}</p>
+                                        <button onClick={() => this.removeFromCart(item)}>Remove Item</button>
                                     </div>
                                 </div>
                             )
