@@ -6,3 +6,71 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+  .App {
+  display: flex;
+  min-height: 949px;
+}
+
+.products {
+  width: 50%;
+  padding: 10px 25px;
+}
+
+.product-info {
+  display: inline-block;
+}
+
+.products h2, h1{
+  border-left: #252525 solid 10px;
+  padding-left: 10px;
+}
+
+
+.product-info-toggled {
+ 
+}
+
+.product {
+  margin-bottom: 20px;
+}
+.product img {
+  vertical-align: top;
+  margin-right: 10px;
+}
+
+.cart {
+  width: 50%;
+  background: #252525;
+  padding: 15px  25px;
+  height: auto;
+}
+
+.cart {
+  color: white;
+}
+
+.cart h1{
+  color: white;
+  border: none;
+  padding: 0;
+}
+
+input {
+  margin-bottom: 8px; 
+  margin-right: 10px; 
+  height: 21px
+}
+
+.cart button {
+  margin-bottom: 8px;
+}
+
+.products {
+  color: black;
+}
+
+
+.cart .product .product-info {
+  display: inline-block;
+}
