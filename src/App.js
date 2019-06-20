@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './App.css';
+
 export default class App extends Component {
   constructor() {
     super();
@@ -38,7 +40,7 @@ export default class App extends Component {
           <h1>Products</h1>
           {
             this.state.products.map(item => (
-              <div key={item.id} className="product">
+              <div key={item.id} className="product-list">
                 <img src={item.imageUrl} />
                 <h4>{item.title}</h4>
                 <p>{item.description}</p>
