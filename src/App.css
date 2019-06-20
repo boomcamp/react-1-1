@@ -1,0 +1,43 @@
+body{
+    padding: 10px;
+}
+.App{
+    display: flex;
+    justify-content: space-between;
+
+}
+.products{
+    width: 50%;
+}
+h1{
+    padding: 10px;
+    font-size: 35px;
+}
+h2{
+    padding: 20px;
+}
+.product{
+    padding: 10px;
+    display: flex;
+}
+.product-info{
+    padding: 10px;
+}
+.cart{
+    background-color: grey;
+    width: 50%;
+}
+img{
+    width: 150px;
+    height: 180px;
+}
+.cart button{
+    margin-left: 20px;
+    border-radius: 5px;
+}
+.cart button:hover{
+    background-color: blue;
+}
+.inputs{
+    padding: 10px;
+}
