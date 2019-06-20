@@ -113,7 +113,7 @@ export default class App extends Component {
                         {this.state.Motorcycles.map(item =>(
                             
                             <div key={item.id} className="products">
-                                <div className="content">
+                                <div className={this.state.cardView ? "content" : "list"}>
                                     <div className="product-photo">
                                         <img src={item.imageUrl} height="180" width="200" />
                                     </div>
@@ -130,7 +130,7 @@ export default class App extends Component {
                     <h3>Headgears</h3>
                         {this.state.Headgears.map(item =>(
                             <div key={item.id} className="products">
-                                <div className="content" >
+                                <div className={this.state.cardView ? "content" : "list"} >
                                     <div className="product-photo">
                                         <img src={item.imageUrl} height="180" width="200" />
                                     </div>
