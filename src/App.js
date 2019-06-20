@@ -7,48 +7,54 @@ class App extends Component{
             coins: [
                 {
                     id: 1,
-                    imageUrl: 'https://via.placeholder.com/150x150',
+                    imageUrl: 'http://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/1024/Bitcoin-BTC-icon.png',
                     title: 'BTC - Bitcoin',
                     price: 9166.00,
-                    description: 'A PRICY BITCOIN'
+                    description: 'A PRICY BITCOIN',
+                    quantity: 1
                 },
                 {
                     id: 2,
-                    imageUrl: 'https://via.placeholder.com/150x150',
+                    imageUrl: 'https://cdn4.iconfinder.com/data/icons/cryptocoins/227/ETH-512.png',
                     title: 'ETH - Etherium',
                     price: 268.66,
-                    description: 'ETHER'
+                    description: 'ETHER',
+                    quantity: 1
                 },
                 {
                     id: 3,
-                    imageUrl: 'https://via.placeholder.com/150x150',
+                    imageUrl: 'https://cdn4.iconfinder.com/data/icons/cryptocoins/227/XRP-512.png',
                     title: 'XRP - Ripple',
                     price: 0.44,
-                    description: 'IT IS RIPPLE'
+                    description: 'IT IS RIPPLE',
+                    quantity: 1
                 },
                 {
                     id: 4,
-                    imageUrl: 'https://via.placeholder.com/150x150',
+                    imageUrl: 'http://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/1024/Binance-Coin-BNB-icon.png',
                     title: 'BNB - Binance Coin',
                     price: 35.34,
-                    description: 'FROM BINANCE'
+                    description: 'FROM BINANCE',
+                    quantity: 1
                 }
             ],
             cart: [],
             others: [
                 {
                     id: 5,
-                    imageUrl: 'https://via.placeholder.com/150x150',
+                    imageUrl: 'https://cdn0.iconfinder.com/data/icons/business-finance-line-art-1/128/currency-litecoin-ol-512.png',
                     title: 'LTC - Litecoin',
                     price: 137.40,
-                    description: 'LITE'
+                    description: 'LITE',
+                    quantity: 0
                 },
                 {
                     id: 6,
-                    imageUrl: 'https://via.placeholder.com/150x150',
+                    imageUrl: 'https://cdn2.iconfinder.com/data/icons/cryptocurrency-2-line/128/eos_EOS_coin_cryptocurrency_digital_crypto_currency-512.png',
                     title: 'EOS',
                     price: 6.90,
-                    description: 'Same name with title....'
+                    description: 'Same name with title....',
+                    quantity: 0
                 }
             ],
             address: "",
@@ -56,16 +62,28 @@ class App extends Component{
         };
     }
 
-    addToCart(item){
-        this.setState(
-            {
-                cart: [...this.state.cart, item]
-            }
-        )
+    addToCart(product){
+        let cpyCart = this.state.cart.map(p => Object.assign({}, p));
+        let index = this.state.cart.findIndex(p => p.id === product.id);
+        if(index === -1){ 
+            product = Object.assign({}, product, { quantity: 1 });
+                this.setState({
+                    cart: [...this.state.cart, product]
+                })
+        }else{
+            cpyCart[index].quantity++;
+            this.setState({
+                cart: cpyCart,
+            });
+        }
+        
+        this.checkout = this.checkout.bind(this);
+        this.handleAddressInput = this.handleAddressInput.bind(this);
+        this.handleCreditCardInput = this.handleCreditCardInput.bind(this);
     }
 
     checkout = () => {
-        if (this.state.address.length > 0 && this.state.creditCard.length > 0) {
+        if (this.state.address !== '' && this.state.creditCard !== '') {
             this.setState({ cart: [] });
             alert('Purchase is complete!');
         } else {
@@ -93,9 +111,9 @@ class App extends Component{
                                 <div key={item.id} className="product">
                                     <img src={item.imageUrl} />
                                     <div className="product-info">
-                                        <h4>{item.title}</h4>
-                                        <p>{item.description}</p>
-                                        <p>{item.price}</p>
+                                        <h4>Name: {item.title}</h4>
+                                        <p>Description: {item.description}</p>
+                                        <p>Price: ${item.price}</p>
                                         <button onClick={() => this.addToCart(item)}>Add to Cart</button>
                                     </div>
                                 </div>
@@ -109,9 +127,9 @@ class App extends Component{
                                 <div key={item.id} className="product">
                                     <img src={item.imageUrl} />
                                     <div className="product-info">
-                                        <h4>{item.title}</h4>
-                                        <p>{item.description}</p>
-                                        <p>{item.price}</p>
+                                        <h4>Name: {item.title}</h4>
+                                        <p>Description: {item.description}</p>
+                                        <p>Price: ${item.price}</p>
                                         <button onClick={() => this.addToCart(item)}>Add to Cart</button>
                                     </div>
                                 </div>
@@ -147,9 +165,10 @@ class App extends Component{
                                 <div key={item.id} className="product">
                                     <img src={item.imageUrl} />
                                     <div className="product-info">
-                                        <h4>{item.title}</h4>
-                                        <p>{item.description}</p>
-                                        <p>{item.price}</p>
+                                        <h4>Name: {item.title}</h4>
+                                        <p>Description: {item.description}</p>
+                                        <p>Price: ${item.price}</p>
+                                        <p>Quantity: {item.quantity}</p>
                                     </div>
                                 </div>
                             )
