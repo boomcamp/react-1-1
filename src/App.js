@@ -6,6 +6,8 @@ export default class App extends Component {
         super();
         this.state = {
             cart: [],
+            address: '',
+            creditCard: '',
             Motorcycles: [
                 {
                     id: 1,
@@ -60,6 +62,14 @@ export default class App extends Component {
         alert('Purchase is complete!')
     }
 
+    handleAddressInput = e => {
+        this.setState({ address: e.target.value });
+      };
+      
+      handleCreditCardInput = e => {
+        this.setState({ creditCard: e.target.value });
+      };
+      
     render() {
         return (
             <div className="App"> 
@@ -77,7 +87,7 @@ export default class App extends Component {
                                         <h4>{item.title}</h4>
                                         <p>{item.price}</p>
                                         <p>{item.description}</p>
-                                        <button className="button" onClick={() => this.addToCart(item)}>Add to Cart</button>
+                                        <button className="btn" onClick={() => this.addToCart(item)}>Add to Cart</button>
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +104,7 @@ export default class App extends Component {
                                         <h4>{item.title}</h4>
                                         <p>{item.price}</p>
                                         <p>{item.description}</p>
-                                        <button className="button" onClick={() => this.addToCart(item)}>Add to Cart</button>
+                                        <button className="btn" onClick={() => this.addToCart(item)}>Add to Cart</button>
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +120,12 @@ export default class App extends Component {
                             0
                         )}
                     </h2>
-                    <button className="button" onClick={this.checkout}>Checkout</button>
+                    <div className="inputs">
+                        <input type="text" placeholder="Address" value={this.setState.address} onChange={this.handleAddressInput} />
+
+                        <input type="text" placeholder="Credit Card Number" value={this.setState.creditCard} onChange={this.handleCreditCardInput} />
+                    </div>
+                    <button className="btn-checkout" onClick={this.checkout}>Checkout</button>
 
                     {this.state.cart.map(item =>(
                         <div key={item.id} className="cart-item">

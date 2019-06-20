@@ -32,14 +32,24 @@
     padding: 0px 30px 15px 25px;
   }
 
-  .button {
-    background-color: #555555;
+  .btn {
+    background-color: #ff6921e6;
     border: none;
     color: white;
     padding: 9px 20px;
     font-size: 14px;
     cursor: pointer;
-    margin-bottom: 10px;
+  }
+
+  .btn-checkout {
+    background-color: #ff6921e6;
+    border: none;
+    color: white;
+    padding: 9px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 25px;
+    margin-top: 6px;
   }
   
   .content {
@@ -53,3 +63,15 @@
   .product-photo {
     flex: 1;
   }
+
+  input[type=text] {
+    width: 55%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-right: 10px;
+  }
+  
