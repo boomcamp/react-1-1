@@ -84,6 +84,12 @@ export default class App extends Component {
 
         <section className="cart">
           <h1>Cart</h1>
+          <h2>
+            Total: $
+            {this.state.cart.reduce(
+              (totalPrice, product) => (totalPrice += product.price),0
+            )}
+          </h2>
           {
             this.state.cart
             .map(cartItem =>( 
