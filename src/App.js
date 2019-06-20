@@ -15,6 +15,7 @@ export default class App extends Component {
                     title: 'Yamaha Sniper 150',
                     price: 99000,
                     description: 'Gixxer is a comfortable bike with excellent manoeuvrability. The motorcycles large diameter front forks aid in reducing weight and contributes to sporty styling.',   
+                    quantity: 0,
                 },
                 {
                     id: 2,
@@ -22,6 +23,7 @@ export default class App extends Component {
                     title: 'Suzuki Gixxer',
                     price: 90000,
                     description: 'The way the rear design is executed with th e body coloured grab rails almost merging into the panels that pack in a small triangular shaped LED taillight further adds to its looks.',
+                    quantity: 0,
                 },
                 {
                     id: 3,
@@ -29,6 +31,7 @@ export default class App extends Component {
                     title: 'Honda Xmax',
                     price: 80000,
                     description: 'High-tech features distance the XMAX from your typical bare-bones scooter, including LED lighting and advanced instrumentation. With plenty of lockable onboard storage.',
+                    quantity: 0,
                 },
             ],
 
@@ -39,6 +42,7 @@ export default class App extends Component {
                     title: 'Airflite Helmet',
                     price: 1500,
                     description: 'Its chin vent is functional to flow air and terrify a la a Hannibal Lecter face mask. Intake vents snort in so much fresh air that you can smell pedestrians fear as youre rolling down the block.',
+                    quantity: 0,
                 },
                 {
                     id: 5,
@@ -46,15 +50,23 @@ export default class App extends Component {
                     title: 'RXR Nutshell Helmet Open Face V4',
                     price: 550,
                     description: 'Shock absorbing EPS inner liner for added protection, High-density Foam Fabric (soft and comfortable), Lightweight,',
+                    quantity: 0,
                 },
             ],
         }
     }
     
     addToCart(item) {
-        this.setState({
-            cart: [...this.state.cart, item],
-        });
+        let cartItem = this.state.cart.map(product => Object.assign({}, product));
+        let index =  this.state.cart.findIndex(product => product.id == item.id);
+
+        if (index == -1){
+            item = Object.assign({}, item, { quantity: 1 });
+            this.setState({ cart: [...this.state.cart, item] });
+        } else {
+            cartItem[index].quantity++;
+            this.setState({ cart: cartItem });
+        }
     }
 
     checkout = () => {
