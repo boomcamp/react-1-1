@@ -103,7 +103,7 @@ export default class App extends Component {
           <h2>Hats</h2>
           {
             this.state.hats.map(item => (
-              <div key={item.id} className="product-list">
+              <div key={item.id} className={this.state.cardView ? "product" : "product-list"}>
                 <img src={item.imageUrl} />
                 <div className="product-info">
                   <h4>{item.title}</h4>
@@ -120,7 +120,7 @@ export default class App extends Component {
           <h2>Beach Gear</h2>
           {
             this.state.beachGear.map(item => (
-              <div key={item.id} className="product-list">
+              <div key={item.id} className={this.state.cardView ? "product" : "product-list"}>
                 <img src={item.imageUrl} />
                 <div className="product-info">
                   <h4>{item.title}</h4>
