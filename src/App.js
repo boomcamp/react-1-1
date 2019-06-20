@@ -6,6 +6,7 @@ export default class App extends Component {
         super();
         this.state = {
             cart: [],
+            cardView: true,
             address: '',
             creditCard: '',
             Motorcycles: [
@@ -90,18 +91,23 @@ export default class App extends Component {
         }
     };
 
+    handleToggleView = () => {
+        this.setState({ cardView: !this.state.cardView });
+    };
+
     handleAddressInput = e => {
         this.setState({ address: e.target.value });
-      };
+    };
       
-      handleCreditCardInput = e => {
+    handleCreditCardInput = e => {
         this.setState({ creditCard: e.target.value });
-      };
+    };
       
     render() {
         return (
             <div className="App"> 
                 <section className="products">
+                    <button className="btn-toggle" onClick={this.handleToggleView}>Toggle View</button>
                     <h1>Products</h1>
                     <h3>Motorcycles</h3>
                         {this.state.Motorcycles.map(item =>(
@@ -115,7 +121,7 @@ export default class App extends Component {
                                         <h4>{item.title}</h4>
                                         <p>{item.price}</p>
                                         <p>{item.description}</p>
-                                        <button className="btn" onClick={() => this.addToCart(item)}>Add to Cart</button>
+                                        <button className="btn-add" onClick={() => this.addToCart(item)}>Add to Cart</button>
                                     </div>
                                 </div>
                             </div>
@@ -124,7 +130,7 @@ export default class App extends Component {
                     <h3>Headgears</h3>
                         {this.state.Headgears.map(item =>(
                             <div key={item.id} className="products">
-                                <div className="content">
+                                <div className="content" >
                                     <div className="product-photo">
                                         <img src={item.imageUrl} height="180" width="200" />
                                     </div>
@@ -132,7 +138,7 @@ export default class App extends Component {
                                         <h4>{item.title}</h4>
                                         <p>{item.price}</p>
                                         <p>{item.description}</p>
-                                        <button className="btn" onClick={() => this.addToCart(item)}>Add to Cart</button>
+                                        <button className="btn-add" onClick={() => this.addToCart(item)}>Add to Cart</button>
                                     </div>
                                 </div>
                             </div>
