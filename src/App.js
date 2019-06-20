@@ -7,6 +7,8 @@ export default class App extends Component {
     super();
     this.state = {
       cart: [],
+      address: "",
+      creditCard: "",
       hats: [
         {
           id: 1,
@@ -43,15 +45,19 @@ export default class App extends Component {
   }
 
   checkout = () => {
-    this.setState({ cart: [] });
-    alert('Purchase is complete!');
+    if (this.state.address.length > 0 && this.state.creditCard.length > 0) {
+      this.setState({cart: []});
+      alert('Purchase is complete!');
+    } else {
+      alert('Please fill out the required fields.');
+    }
   };
 
-  handleAddressInput(e) {
+  handleAddressInput = (e) => {
     this.setState({ address: e.target.value });
   }
 
-  handleCreditCardInput(e) {
+  handleCreditCardInput = (e) => {
     this.setState({ creditCard: e.target.value });
   }
 
@@ -110,7 +116,7 @@ export default class App extends Component {
           </div>
 
           <button onClick={this.checkout}>Checkout</button>
-          
+
           {this.state.cart
             .map(cartItem =>( 
               <div key={cartItem.id} className="product">
