@@ -99,6 +99,12 @@ export default class App extends Component {
 
                 <section className="cart">
                     <h1>Cart</h1>
+                    <h2>Total: $
+                        {this.state.cart.reduce(
+                            (totlaPrice, product) => (totlaPrice += product.price), 
+                            0
+                        )}
+                    </h2>
                     {this.state.cart.map(item =>(
                         <div key={item.id} className="cart-item">
                             <div className="content">
