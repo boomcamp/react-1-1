@@ -1,0 +1,64 @@
+* {
+	box-shadow: border-box;
+}
+
+.App {
+	display: flex;
+	width: 100%;
+	height: 100%;
+}
+
+.products {
+	background-color: #eeeded;
+	padding: 5px 5px 5px 20px;
+	width: 50%;
+}
+
+.cart {
+	background-color: black;
+	color: white;
+	width: 50%;
+	padding: 10px 10px 20px 40px;
+}
+
+h1, h2 {
+	border-left: black;
+	border-left-width: 80px;
+}
+
+h2 {
+	margin-left: 20px;
+}
+
+.cart button {
+	height: 30px;
+	width: 120px;
+	margin: 20px 0 45px 155px;
+}
+
+.cart .product {
+	margin-left: 25px;
+}
+
+
+.product {
+	display: flex;
+}
+
+.product-info {
+	padding-left: 10px;
+}
+
+.product:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.inputs input{
+	height: 30px;
+	margin-left: 23px;
+	padding-left: 5px;
+}
+
+.inputs input:not(:last-child) {
+  margin-right: 10px;
+}
