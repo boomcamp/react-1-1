@@ -36,6 +36,17 @@ export default class App extends Component {
       <div className="App">
         <section className="products">
           <h1>Products</h1>
+          {
+            this.state.products.map(item => (
+              <div key={item.id} className="product">
+                <img src={item.imageUrl} />
+                <h4>{item.title}</h4>
+                <p>{item.description}</p>
+                <p>{item.price}</p>
+                <button>Add to Cart</button>
+              </div>
+            ))
+          }
         </section>
 
         <section className="cart">
