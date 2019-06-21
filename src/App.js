@@ -114,11 +114,11 @@ export default class App extends Component {
                     <h3>Motorcycles</h3>
                         {this.state.Motorcycles.map(item =>(
                             <Product key={item.id} item={item} addToCart={this.addToCart} />
-                            ))}
+                        ))}
                         
                     <h3>Headgears</h3>
-                    {this.state.Motorcycles.map(item =>(
-                        <Product key={item.id} item={item} addToCart={this.addToCart} />
+                        {this.state.Motorcycles.map(item =>(
+                            <Product key={item.id} item={item} addToCart={this.addToCart} />
                         ))}
                 </section>
                 
