@@ -1,0 +1,32 @@
+.App{
+    display: flex;
+}
+
+.products{
+    width: 50%;
+    padding: 20px;
+}
+
+.cart{
+    width: 50%;
+    background-color: rgb(43, 42, 42);
+    color: white;
+    padding: 20px;
+}
+
+.input2{
+    margin: 0 10px;
+}
+
+.toggle{
+    display: block;
+}
+
+.view{
+    display: flex;
+    flex-direction: row;
+}
+
+button{
+    height: 5vh;
+}
