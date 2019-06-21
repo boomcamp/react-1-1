@@ -34,3 +34,12 @@
 div {
     padding: 25px;
 }
+
+h1, h2 {
+    border-left: 10px solid black;
+    letter-spacing: 5px;
+}
+
+.cart h1, .cart h2 {
+    border-left: 10px solid white;
+}
