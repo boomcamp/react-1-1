@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import Product from './components/Product';
 
 export default class App extends Component {
     constructor() {
@@ -108,40 +109,16 @@ export default class App extends Component {
             <div className="App"> 
                 <section className="products">
                     <button className="btn-toggle" onClick={this.handleToggleView}>Toggle View</button>
+
                     <h1>Products</h1>
                     <h3>Motorcycles</h3>
                         {this.state.Motorcycles.map(item =>(
-                            
-                            <div key={item.id} className="products">
-                                <div className={this.state.cardView ? "content" : "list"}>
-                                    <div className="product-photo">
-                                        <img src={item.imageUrl} height="180" width="200" />
-                                    </div>
-                                    <div className="details">
-                                        <h4>{item.title}</h4>
-                                        <p>{item.price}</p>
-                                        <p>{item.description}</p>
-                                        <button className="btn-add" onClick={() => this.addToCart(item)}>Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
+                            <Product key={item.id} item={item} addToCart={this.addToCart} />
+                            ))}
                         
                     <h3>Headgears</h3>
-                        {this.state.Headgears.map(item =>(
-                            <div key={item.id} className="products">
-                                <div className={this.state.cardView ? "content" : "list"} >
-                                    <div className="product-photo">
-                                        <img src={item.imageUrl} height="180" width="200" />
-                                    </div>
-                                    <div className="details">
-                                        <h4>{item.title}</h4>
-                                        <p>{item.price}</p>
-                                        <p>{item.description}</p>
-                                        <button className="btn-add" onClick={() => this.addToCart(item)}>Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
+                    {this.state.Motorcycles.map(item =>(
+                        <Product key={item.id} item={item} addToCart={this.addToCart} />
                         ))}
                 </section>
                 
@@ -150,7 +127,7 @@ export default class App extends Component {
                     <h1>Cart</h1>
                     <h2>Total: $
                         {this.state.cart.reduce(
-                            (totlaPrice, product) => (totlaPrice += product.price * product.quantity), 
+                            (totalPrice, product) => (totalPrice += product.price * product.quantity), 
                             0
                         )}
                     </h2>
@@ -163,19 +140,7 @@ export default class App extends Component {
 
                     {this.state.cart.map(item =>(
                         <div key={item.id} className="cart-item">
-                            <div className="content">
-                                <div className="product-photo">
-                                    <img src={item.imageUrl} height="150" width="180" />
-                                </div>
-                                <div className="details">
-                                    <p>Product Name: {item.title}</p>
-                                    <p>Price: {item.price}</p>
-                                    <p>Quantity: {item.quantity}</p>
-                                    <p>{item.description}</p>
-                                    <button className="btn-remove" onClick={() => this.deleteFromCart(item.id)} >Remove from Cart</button>
-                                    
-                                </div>
-                            </div>
+                            
                         </div>
                     ))}
                 </section>

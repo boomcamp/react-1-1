@@ -84,6 +84,7 @@
   
   .details {
     flex: 2;
+    margin-bottom: 25px;
   }
   
   .product-photo {
