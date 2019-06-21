@@ -1,0 +1,45 @@
+.App{
+    display: flex;
+}
+
+.cart {
+    background-color: black;
+}
+
+.products, .cart {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.cart {
+    color: white;
+}
+
+.card {
+  
+}
+
+.card div.product {
+    display: flex;
+}
+
+
+.btn {
+    width: 40%;
+}
+
+div {
+    padding: 25px;
+}
+
+h1, h2 {
+    border-left: 10px solid black;
+    letter-spacing: 5px;
+}
+
+.cart h1, .cart h2 {
+    border-left: 10px solid white;
+}
