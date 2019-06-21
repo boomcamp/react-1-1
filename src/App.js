@@ -106,10 +106,12 @@ if (this.state.toggle){
                      this.state.gaming.map(item => (
                         <div key={item.id} className="product">
                             <img src={item.imageUrl} />
+                            <div>
                             <h4>{item.title}</h4>
                             <p>{item.description}</p>
                             <p>{item.price}</p>
                             <button onClick={()=> this.addToCart(item)}>Add to Cart</button>
+                            </div>
                         </div>   
                      ))
                  }
@@ -118,10 +120,12 @@ if (this.state.toggle){
                      this.state.music.map(item => (
                         <div key={item.id} className="product">
                             <img src={item.imageUrl} />
+                            <div>
                             <h4>{item.title}</h4>
                             <p>{item.description}</p>
                             <p>{item.price}</p>
                             <button onClick={()=> this.addToCart(item)}>Add to Cart</button>
+                            </div>
                         </div>   
                      ))
                  }
