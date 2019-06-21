@@ -1,8 +1,104 @@
 * {
   box-sizing: border-box;
 }
+
+body, html {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  width: 100%;
+}
+.product {
+  margin-bottom: 1rem;
+  display: flex;
+}
+.product-list {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.product > .details {
+  padding-left: 1rem;
+}
+
+.product > div {
+  *border: 1px dotted gray;
+  display: flex;
+  flex-direction: column;
+}
+
+.product h4 {
+  margin: 0;
+}
+
+.App {
+  display: flex;
+  width: 100%;
+}
+
+section {
+  padding: 1rem;
+  width: 100%;
+  min-height: 100vh;
+}
+
+img {
+  border-radius: 10px;
+}
+
+button {
+  border-radius: 5px;
+  border: none;
+  padding: 0.3rem;
+  background: #222;
+  color: #fff;
+  outline: none;
+  width: 8rem;
+}
+
+button:hover {
+  background: #555;
+}
+
+.cart {
+  background: #222;
+  color: #fff;
+}
+
+.cart h1 {
+  color: #fff;
+}
+
+.cart button {
+  background: #fff;
+  color: #222;
+}
+
+.cart button:hover {
+  background: #ccc;
+}
+
+.products h1 {
+  border-left: 0.8rem solid #222;
+  padding-left: 0.5rem;
+}
+
+input {
+  border: none;
+  padding: 0.8rem;
+  margin: 0 0.5rem 0.5rem 0;
+  border-radius: 3px;
+  outline: none;
+}
+
+button.checkout {
+  margin: 0.8rem 0;
+  background-color: goldenrod;
+  padding: 1rem;
+  color: #555;
 }
