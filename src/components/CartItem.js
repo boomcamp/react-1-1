@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import Text from './Text';
 
 export default function CartItem(props) {
   const { item } = props;
@@ -11,10 +11,10 @@ export default function CartItem(props) {
             <img src={item.imageUrl} height="150" width="180" />
         </div>
         <div className="details">
-            <p>Product Name: {item.title}</p>
-            <p>Price: {item.price}</p>
-            <p>Quantity: {item.quantity}</p>
-            <p>{item.description}</p>
+            <Text isHeader={true} text={item.title} />
+            <Text isHeader={false} text={item.price} />
+            <Text isHeader={false} text={item.quantity} />
+            <Text isHeader={false} text={item.description} />
             <button className="btn-remove" onClick={() => this.deleteFromCart(item.id)}> Remove from Cart </button>
         </div>
     </div>
