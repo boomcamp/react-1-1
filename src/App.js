@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Product from './components/Product';
+import CartItem from './components/CartItem';
 
 export default class App extends Component {
     constructor() {
@@ -58,7 +59,7 @@ export default class App extends Component {
         }
     }
     
-    addToCart(item) {
+    addToCart = (item) => {
         let cartItem = this.state.cart.map(product => Object.assign({}, product));
         let index =  this.state.cart.findIndex(product => product.id == item.id);
 
@@ -70,6 +71,17 @@ export default class App extends Component {
             this.setState({ cart: cartItem });
         }
     }
+
+    addToCart = item => {
+        this.setState({
+          cart: [...this.state.cart, item],
+        });
+      };
+    
+      checkout = () => {
+        this.setState({ cart: [] });
+        alert('Purchase is complete!');
+      };
 
     deleteFromCart(id) {
         let cartItem = this.state.cart.map(product => Object.assign({}, product));
@@ -131,17 +143,17 @@ export default class App extends Component {
                             0
                         )}
                     </h2>
+                    
                     <div className="inputs">
                         <input type="text" placeholder="Address" value={this.setState.address} onChange={this.handleAddressInput} />
 
                         <input type="text" placeholder="Credit Card Number" value={this.setState.creditCard} onChange={this.handleCreditCardInput} />
                     </div>
+
                     <button className="btn-checkout" onClick={this.checkout}>Checkout</button>
 
-                    {this.state.cart.map(item =>(
-                        <div key={item.id} className="cart-item">
-                            
-                        </div>
+                    {this.state.cart.map(item => (
+                        <CartItem key={item.id} item={item} />
                     ))}
                 </section>
             </div>
