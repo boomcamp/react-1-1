@@ -144,7 +144,7 @@ export default class App extends Component {
                     <h1>Cart</h1>
                     <h2>
                         Total: $
-                        {this.state.cart.reduce((total, cart) => (total=total+(cart.price*cart.quantity)), 0)}
+                        {this.state.cart.reduce((total, cart) => (total=total+(cart.price*cart.quantity)), 0).toFixed(2)}
                     </h2>
                     <div>
                         <input type="text" placeholder="Address" className="address" value={this.address} onChange={(e)=>this.addressInput(e)}/>
