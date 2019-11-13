@@ -10,6 +10,7 @@ export class App extends Component {
             cart: [],
             address: '',
             creditCard: '',
+            cardView: true,
             hats: [
               {
                 id: 1,
@@ -102,8 +103,21 @@ export class App extends Component {
 
     toggleView=(e)=>{
 
-        document.querySelectorAll('.item-container').forEach(element=>{element.style.display = element.style.display === 'flex' || element.style.display === '' ? 'block' : 'flex';})
 
+        document.querySelectorAll('.item-container').forEach(element=>{
+
+            if(this.state.cardView){
+                element.style.display = 'flex';
+                this.setState({
+                    cardView : false
+                })
+            }else{
+                element.style.display = 'block';
+                this.setState({
+                    cardView : true
+                })
+            }
+        })
     }
 
     render() {
