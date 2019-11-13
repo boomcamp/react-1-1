@@ -6,3 +6,39 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.App{
+  margin-left: 20px;
+  display: flex;
+}
+
+.App section{
+  width: 50%;
+}
+
+.cart{
+  color: white;
+  background: rgb(44, 44, 44);
+}
+
+.cart{
+  padding: 0 20px;
+}
+
+.item-container{
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.type{
+  border-left: black 5px solid;
+  padding-left: 10px;
+}
+
+.detailsContainer{
+  margin-left: 10px;
+}
+
+
+
