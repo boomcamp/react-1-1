@@ -6,3 +6,42 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.products{
+  width: 50%;
+  padding: 15px;
+}
+
+.productTitle{
+  padding: 0 0 0 10px;
+  border-left: 8px solid black;
+}
+
+img{
+  margin: 15px;
+}
+
+.productList, .cartList{
+  display: flex;
+}
+
+.prodDetails{
+  margin: 15px;
+}
+
+.cart{
+  width: 50%;
+  color: white;
+  background-color: #252525;
+  padding: 15px;
+  height: 100vh;
+}
+
+.creditCard, .creditCard{
+  margin: 10px;
+}
