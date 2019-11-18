@@ -74,11 +74,9 @@ export default class App extends Component {
   handleAddressInput = e => {
     this.setState({ address: e.target.value });
   };
-
   handleCreditCardInput = e => {
     this.setState({ creditCard: e.target.value });
   };
-
   handleToggleView = () => {
     this.setState({ cardView: !this.state.cardView });
   };
